@@ -1,12 +1,16 @@
-.signInContainer {
+.registrationContainer {
     display: flex;
     flex-direction: column;
     position: fixed;
+    justify-content: center;
+    align-items: center;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    font-family: Helvetica, sans-serif
+    background-color: white;
+    z-index: 1000;
+    font-family: Helvetica;
 }
 
 .signInHeader {
@@ -45,83 +49,12 @@
     font-size: 13px;
 }
 
-.registrationLink {
-    text-decoration: none;
-    color: blue;
-}
-
-.signIn {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-
-.suggestSpan {
-    margin-bottom: 30px;
-}
-
-.signInToSlack {
+.registerToSlack {
     font-size: 48px;
     margin-top: 0;
-    margin-bottom: 10px;
 }
 
-.buttonsContainer {
-    display: flex;
-    flex-direction: column;
-    width: 400px;
-    justify-self: center;
-    align-self: center;
-}
-
-.googleSignInButton, .appleSignInButton {
-    width: 400px;
-    height: 44px;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    border: 2px solid rgba(29, 28, 29, 0.3);
-    border-radius: 5px;
-}
-
-.signInWithGoogle, .signInWithApple {
-    font-size: 18px;
-    margin-left: 18px;
-    vertical-align:top;
-}
-
-.appleSignInButton {
-    margin-top: 18px;
-}
-
-.orContainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 400px;
-    margin-top: 15px;
-    margin-bottom: 15px;
-}
-
-.horizontalLeftLine, .horizontalRightLine {
-    border: none;
-    border-top: 1px solid #ddd;
-    clear: both;
-    margin-bottom: 16px;
-    flex-grow: 1;
-    margin: 0;
-    display: flex;
-    align-items: center;
-}
-
-.emailForm {
-    display: flex;
-    flex-direction: column;
-}
-
-.emailInput, .passwordInput {
+.passwordInput {
     width: 400px;
     height: 44px;
     background-color: white;
@@ -132,8 +65,28 @@
     margin-bottom: 20px;
 }
 
-.emailSubmitButton {
+.emailInput {
+    width: 400px;
     height: 44px;
+    background-color: white;
+    border: 1px solid rgba(29, 28, 29, 0.3);
+    border-radius: 5px;
+    font-size: 18px;
+    text-indent: 18px;
+    margin-bottom: 20px;
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    justify-self: center;
+    align-self: center;
+}
+
+.registerButton {
+    height: 44px;
+    width: 400px;
     border: none;
     background-color: #4a154b;
     font-size: 18px;
