@@ -8,7 +8,7 @@ import { store } from '../rightsidebar/store'
 import StepTwo from '../rightsidebar/steptwo/page'
 import StepThree from '../rightsidebar/stepthree/page'
 
-export default function page() {
+export default function Page() {
   return (
     <Provider store={store}>
       <SideBar />

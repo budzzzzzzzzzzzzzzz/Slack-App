@@ -1,0 +1,149 @@
+.signInContainer {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    font-family: Helvetica, sans-serif
+}
+
+.signInHeader {
+    display: flex;
+    flex-direction: row;
+    display: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 38px;
+    padding: 48px 0 40px;
+}
+
+.leftColumn, .centerColumn, .rightColumn {
+    display: flex;
+    flex: 1;
+}
+
+.centerColumn {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.slackText {
+    font-size: 28px;
+}
+
+.rightColumn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0 40px 0 0;
+    font-size: 13px;
+}
+
+.registrationLink {
+    text-decoration: none;
+    color: blue;
+}
+
+.signIn {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.suggestSpan {
+    margin-bottom: 30px;
+}
+
+.signInToSlack {
+    font-size: 48px;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.buttonsContainer {
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    justify-self: center;
+    align-self: center;
+}
+
+.googleSignInButton, .appleSignInButton {
+    width: 400px;
+    height: 44px;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border: 2px solid rgba(29, 28, 29, 0.3);
+    border-radius: 5px;
+}
+
+.signInWithGoogle, .signInWithApple {
+    font-size: 18px;
+    margin-left: 18px;
+    vertical-align:top;
+}
+
+.appleSignInButton {
+    margin-top: 18px;
+}
+
+.orContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.horizontalLeftLine, .horizontalRightLine {
+    border: none;
+    border-top: 1px solid #ddd;
+    clear: both;
+    margin-bottom: 16px;
+    flex-grow: 1;
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
+
+.emailForm {
+    display: flex;
+    flex-direction: column;
+}
+
+.emailInput, .passwordInput {
+    width: 400px;
+    height: 44px;
+    background-color: white;
+    border: 1px solid rgba(29, 28, 29, 0.3);
+    border-radius: 5px;
+    font-size: 18px;
+    text-indent: 18px;
+    margin-bottom: 20px;
+}
+
+.emailSubmitButton {
+    height: 44px;
+    border: none;
+    background-color: #4a154b;
+    font-size: 18px;
+    font-weight: 700;
+    color: white;
+    border-radius: 5px;
+}
+
+.errorMessage {
+    color: red;
+    text-align: left;
+    margin-bottom: 15px;
+}

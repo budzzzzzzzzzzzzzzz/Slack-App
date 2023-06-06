@@ -2,7 +2,7 @@
 
 import {configureStore, createSlice} from '@reduxjs/toolkit'
 
-const initialState = {value: {nameTeam: "", profileName: "", emailAdd: ""}}
+const initialState = {value: {nameTeam: "", profileName: "", emailAdd: "", password: "", confirm_password: "", profilePicture: "", coworkers: [""]}}
 const teamNameSlice = createSlice({
     name: "team",
     initialState: initialState,
