@@ -17,10 +17,11 @@ import { auth, db } from '@/app/config/firebase';
 import * as yup from 'yup'
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { addDoc, collection } from 'firebase/firestore';
+import { updateDoc, doc } from 'firebase/firestore';
+import { arrayUnion } from 'firebase/firestore';
 
 interface RegisterForm {
-  coworker_names: string[];
+  coworker_names: Array<string>;
 }
 
 export default function StepThree() {
@@ -66,12 +67,11 @@ export default function StepThree() {
       setCoworker(coworkers.filter((el, i) => i !== index));
     }
 
-    const registrationCollector = collection(db, "user_registration");
+    const registrationCollector = doc(db, "user_registration", "JkMUbpz5jnxaEv147k2L");
 
     const submitRegistration = async (data: RegisterForm) => {
-      await addDoc(registrationCollector, {
-          coworker_names: data.coworker_names,
-          userId: user?.uid,
+      await updateDoc(registrationCollector, {
+          coworker_names: arrayUnion(data.coworker_names),
       })
   }
 
@@ -100,7 +100,7 @@ export default function StepThree() {
               {
                 coworkers.map((value, index) => {
                   if (value === "") return;
-                  return <div className={styles.avatarAndName} key={index}>
+                  return <div className={styles.avatarAndName} key={index} >
                             <Image src={coworkerAvatarIcon} width={20} height={20} alt='slack-avatar' className={styles.avatarPic}/>
                             <span className={styles.userName}>{value}</span>
                           </div>
@@ -143,8 +143,6 @@ export default function StepThree() {
                       Next
                     </Link>
                     </button>
-
-
                   <button className={styles.copyLinkButton}>
                     <div className={styles.chainImageCont}>
                       <Image src={copyLink} className={styles.chainImage} width={18} height={18} alt='copy-link'/>

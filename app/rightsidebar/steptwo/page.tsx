@@ -12,13 +12,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { auth, db } from '@/app/config/firebase';
 import * as yup from 'yup'
-import { addDoc, collection } from 'firebase/firestore';
+import { addDoc, collection, doc, updateDoc } from 'firebase/firestore';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 interface RegisterForm {
   profile_name: string;
-  image_url: string;
+  image_url: File | StaticImageData;
 }
 
 export default function StepTwo() {
@@ -57,13 +57,12 @@ export default function StepTwo() {
       }
     }
 
-    const registrationCollector = collection(db, "user_registration");
+    const registrationCollector = doc(db, "user_registration", "JkMUbpz5jnxaEv147k2L");
 
     const submitRegistration = async (data: RegisterForm) => {
-      await addDoc(registrationCollector, {
+      await updateDoc(registrationCollector, {
           profile_name: data.profile_name,
           image_url: data.image_url,
-          userId: user?.uid,
       })
   }
 
@@ -106,14 +105,14 @@ export default function StepTwo() {
                 <label className={styles.text}><span className={styles.textTwo}>Your profile photo</span> <span className={styles.textThree}>(optional)</span></label>
                 <div className={styles.photoRegisterCont}>
                   <div className={styles.avatarCont}>
-                    <Image src={isUploadImage? imageURL : slackEmptyAvatar} width={112} height={112} alt='slack-avatar-icon'/>
+                    <Image src={isUploadImage? imageURL : slackEmptyAvatar} width={112} height={112} alt='slack-avatar-icon' />
                   </div>
                   <div className={styles.avatarButtonCont}>
                     <div className={styles.statement}>Help your teammates know they're talking to the right person.</div>
                     <div className={styles.uploadButtonCont}>
                       <button className={styles.uploadButton} type='button'>
                         Upload Photo
-                        <input {...register("image_url")} accept="image/*;capture=camera" aria-hidden="true" className={styles.hidden} type="file" data-qa="edit_profile_file_upload" onChange={updateImage}/>
+                        <input  accept="image/*;capture=camera" {...register("image_url")} aria-hidden="true" className={styles.hidden} type="file" data-qa="edit_profile_file_upload" onChange={updateImage}/>
                       </button>
                     </div>
                   </div>

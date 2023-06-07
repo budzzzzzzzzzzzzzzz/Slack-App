@@ -12,7 +12,7 @@ import {useState} from 'react'
 import * as yup from 'yup'
 import { useForm } from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup'
-import {addDoc, collection} from 'firebase/firestore'
+import {addDoc, collection, doc, updateDoc} from 'firebase/firestore'
 import { db } from '../../../../config/firebase';
 import {useAuthState} from 'react-firebase-hooks/auth'
 import { auth } from '../../../../config/firebase';
@@ -44,10 +44,10 @@ export default function SignUp() {
     });
     const [profileName, setProfileName] = useState("");
 
-    const registrationCollector = collection(db, "user_registration");
+    const registrationCollector = doc(db, "user_registration", "JkMUbpz5jnxaEv147k2L");
 
     const submitRegistration = async (data: RegisterForm) => {
-        await addDoc(registrationCollector, {
+        await updateDoc(registrationCollector, {
             email: data.email,
             password: data.password,
             userId: user?.uid,

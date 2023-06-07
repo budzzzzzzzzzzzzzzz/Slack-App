@@ -10,7 +10,7 @@ import Image from 'next/image';
 import coworkerAvatarIcon from 'app/icons/slack-avatar-coworkers.png'
 import { useSelector, useDispatch } from 'react-redux';
 import hashtag from 'app/icons/hashtagIcon.png'
-import {addDoc, collection} from 'firebase/firestore'
+import {addDoc, collection, updateDoc, doc} from 'firebase/firestore'
 import { db } from '@/app/config/firebase';
 import {useAuthState} from 'react-firebase-hooks/auth'
 import { auth } from '@/app/config/firebase';
@@ -19,19 +19,10 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 
 interface RegisterForm {
-  email: string;
-  password: string;
-  confirm_password: string;
-  username: Array<string>;
-  coworker_names: Array<string>;
   project_name: string;
-  team_name: string;
-  avatar_name: string;
-  photo_url: string;
 }
 
 export default function StepThree() {
-    const [names, setNames] = useState([""]);
     const [coworkers, setCoworker] = useState([""]);
     const [projectName, setProjectName] = useState("");
 
@@ -39,22 +30,11 @@ export default function StepThree() {
     const avatarName = useSelector((state: any) => {return state.teamName.value.profileName});
     const avatarPicture = useSelector((state: any) => {return state.teamName.value.profilePicture});
     const coworkerNames = useSelector((state: any) => {return state.teamName.value.coworkers});
-    const emailName = useSelector((state: any) => {return state.teamName.value.coworkers});
-    const userPassword = useSelector((state: any) => {return state.teamName.value.coworkers});
-    const userConfirmPassword = useSelector((state: any) => {return state.teamName.value.confirm_password});
 
     const [user] = useAuthState(auth);
 
     const dataValidation = yup.object().shape({
-      email: yup.string().email().required(),
-      password: yup.string().required(),
-      confirm_password: yup.string().oneOf([yup.ref("password")]).required(),
-      username: yup.string(),
-      coworker_names: yup.array(),
-      project_names: yup.string(),
-      team_name: yup.string(),
-      avatar_name: yup.string(),
-      photo_url: yup.string(),
+      project_name: yup.string(),
   })
 
   const {register, handleSubmit, formState: {errors}} =         useForm<RegisterForm>({
@@ -65,18 +45,11 @@ export default function StepThree() {
       setProjectName(event.target.value);
     }
 
-    const registrationCollector = collection(db, "user_profile");
+    const registrationCollector = doc(db, "user_registration", "JkMUbpz5jnxaEv147k2L");
     const submitRegistration = async (data: RegisterForm) => {
-        await addDoc(registrationCollector, {
-            email: data.email,
-            password: data.password,
-            confirm_password: data.confirm_password,
-            userId: user?.uid,
-            coworker_names: data.coworker_names,
+        await updateDoc(registrationCollector, {
             project_name: data.project_name,
-            username: data.username,
-            photo_url: data.photo_url,
-            team_name: data.team_name,
+            userId: user?.uid,
         })
     }
 
@@ -124,7 +97,7 @@ export default function StepThree() {
               }
             </div>
         </div>
-        <form method='post'>
+        <form method='POST'>
         <div className={styles.rightSideBarCont}>
             <div className={styles.stepsCounterCont}>
               Step 4 of 4
